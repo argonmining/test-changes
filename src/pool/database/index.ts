@@ -18,31 +18,17 @@ export default class Database {
     })
     this.miners = this.db.openDB('miners', {})
   }
-  
+
+  getMiner (address: string) {
+    return this.miners.get(address) ?? { ...defaultMiner }
+  }
+
   addBalance (address: string, balance: bigint) {
     return this.miners.transactionSync(() => {
-      const miner = this.miners.get(address) ?? { ...defaultMiner }
-
+      const miner = this.getMiner(address)
       miner.balance += balance
-      this.miners.put(address, miner)
-  
-      return true
+
+      this.miners.putSync(address, miner)
     })
-  }
-
-  resetBalance (address: string) {
-    return this.miners.transactionSync(() => {
-      const miner = this.miners.get(address)
-      if (!miner) return true
-
-      miner.balance = 0n
-      this.miners.put(address, miner)
-
-      return true
-    })
-  }
-
-  getUser (address: string) {
-    return this.miners.get(address) ?? defaultMiner
   }
 }

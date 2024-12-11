@@ -1,5 +1,5 @@
 import { version } from '../../../package.json'
-import { stylize, codes, getReadableDate, getReadableTime } from './styling'
+import { stylize, Code, getReadableDate, getReadableTime } from './styling'
 
 export default class Monitoring {
   constructor () {
@@ -12,10 +12,10 @@ export default class Monitoring {
   }
 
   log (message: string) {
-    console.log(this.buildMessage(stylize(codes.bgYellowLight, 'LOG'), message))
+    console.log(this.buildMessage(stylize(Code.bgYellowLight, 'LOG'), message))
   }
 
   private buildMessage (prefix: string, message: string) {
-    return `${stylize(codes.green, getReadableDate())} ${stylize(codes.cyan, getReadableTime())} ${prefix} ${message}`
+    return `${stylize(Code.green, getReadableDate())} ${stylize(Code.cyan, getReadableTime())} ${prefix} ${message}`
   }
 }
