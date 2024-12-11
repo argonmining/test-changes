@@ -1,0 +1,15 @@
+{
+  "node": "",
+  "stratum": {
+    "port": 7777,
+    "templates": {
+      "cacheSize": 300
+    },
+    "difficulty": 1
+
+  },
+  "treasury": {
+    "privateKey": "",
+    "fee": 1
+  }
+}
